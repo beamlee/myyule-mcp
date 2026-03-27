@@ -1,0 +1,23 @@
+name: Build Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - run: npm install
+      - run: npm run build
+      - run: npm install -g pkg
+      - run: pkg dist/index.js --targets node18-macos-arm64 -o myyule-mcp
+      - uses: actions/upload-artifact@v4
+        with:
+          name: myyule-mcp-macos
+          path: myyule-mcp
