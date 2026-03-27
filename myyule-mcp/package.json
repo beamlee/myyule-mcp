@@ -1,0 +1,22 @@
+{
+  "name": "myyule-mcp",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "bin": "dist/index.js",
+  "pkg": {
+    "assets": ["dist/**/*"],
+    "targets": ["node18-macos-arm64"]
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}
