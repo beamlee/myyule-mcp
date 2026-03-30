@@ -11,29 +11,25 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-      
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-      
+
       - name: Install dependencies
-        working-directory: ./myyule-mcp
+        working-directory: myyule-mcp
         run: npm install
-      
+
       - name: Build
-        working-directory: ./myyule-mcp
+        working-directory: myyule-mcp
         run: npm run build
-      
-      - name: List files
-        run: ls -la myyule-mcp/dist/
-      
+
       - name: Install pkg
         run: npm install -g pkg
-      
+
       - name: Package
-        working-directory: ./myyule-mcp
+        working-directory: myyule-mcp
         run: pkg dist/index.js --targets node18-macos-arm64 -o myyule-mcp
-      
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
